@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "kvadratnoeuravnenie", "kvadratnoeuravnenie.pyproj", "{0A53FB12-2B94-4CA3-999A-660DC70CDBFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A53FB12-2B94-4CA3-999A-660DC70CDBFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A53FB12-2B94-4CA3-999A-660DC70CDBFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA3470A7-3220-413B-ADA4-0054B7A1A674}
+	EndGlobalSection
+EndGlobal
