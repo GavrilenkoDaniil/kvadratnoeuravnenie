@@ -1,8 +1,28 @@
 from tkinter import *
 from math import *
-def reshenie(event):
+import matplotlib.pyplot as plt
+import numpy as np
+global D,t,graf
+D=-1
+t="нет решений!"
+graf=False
+def reshenie():
+    global D,t,graf
     if (a.get()!="" and b.get()!="" and c.get()!=""):
-        try:
+        if float(a.get())==0 and float(b.get())==0 and float(c.get())==0:
+            rezult.configure(text=f"Тут не может быть 0")
+            a.configure(bg="red")
+            b.configure(bg="red")
+            c.configure(bg="red")
+            graf=False
+        elif float(a.get())==0 and float(b.get())!=0 and float(c.get())!=0:
+            b_=float(b.get())
+            c_=float(c.get())
+            x1_=round((-1*c_)/b_,2)
+            t=f"X1={x1_}"
+            rezult.configure(text=f"{t}")
+            graf=False
+        elif float(a.get())!=0:
             a_=float(a.get())
             b_=float(b.get())
             c_=float(c.get())
@@ -19,12 +39,10 @@ def reshenie(event):
             else:
                 t="Корней нет"
                 graf=False
-        except:
-            ValueError
-        rezult.configure(text=f"D={D}\n{t}")
-        a.configure(bg="lightblue")
-        b.configure(bg="lightblue")
-        c.configure(bg="lightblue")
+            rezult.configure(text=f"D={D}\n{t}")
+            a.configure(bg="lightblue")
+            b.configure(bg="lightblue")
+            c.configure(bg="lightblue")
     else:
         if a.get()=="":
             a.configure(bg="red")
@@ -35,7 +53,26 @@ def reshenie(event):
     return graf,D,t
 
 def graafik():
-    pass
+    graf,D,t=reshenie()
+    if graf==True:
+        a_=float(a.get())
+        b_=float(b.get())
+        c_=float(c.get())
+        x0=(-b_)/(2*a_)
+        y0=a_*x0*x0+b_*x0+c_
+        x=np.arange(x0-10, x0+10, 0.5)#min max step
+        y=a_*x*x+b_*x+c_
+        fig=plt.figure()
+        plt.plot(x,y,"b:o",x0,y0,"r-d")
+        plt.title("Квадратное уравнение")
+        plt.ylabel("y")
+        plt.xlabel("x")
+        plt.grid(True)
+        plt.show()
+        text=f"Вершина параболлы ({x0},{y0})"
+    else:
+        text=f"График невозможно построить"
+    rezult.configure(text=f"D={D}\n{t}\n{text}")
 aken=Tk()
 aken.title=("Квадратное уравнение")
 lbl=Label(aken,text="Решение квадратного уравнения",height=4,width=40,font="Arial 20",fg="green",bg="lightblue")
@@ -47,9 +84,8 @@ text3=Label(aken,text="=0",font="Arial 20",fg="green")
 a=Entry(aken,font="Arial 20",width=5,fg="green",bg="lightblue",justify=CENTER)
 b=Entry(aken,font="Arial 20",width=5,fg="green",bg="lightblue")
 c=Entry(aken,font="Arial 20",width=5,fg="green",bg="lightblue")
-knopka=Button(aken,text="Решить",font="Arial 20",fg="black",bg="green",height=3,width=15,relief=GROOVE)
-grafik=Button(aken,text="График",font="Arial 20",fg="black",bg="green",height=3,width=15,relief=GROOVE)
-knopka.bind("<Button-1>",reshenie)
+knopka=Button(aken,text="Решить",font="Arial 20",fg="black",bg="green",height=3,width=15,relief=GROOVE,command=reshenie)
+grafik=Button(aken,text="График",font="Arial 20",fg="black",bg="green",height=3,width=15,relief=GROOVE,command=graafik)
 rezult=Label(aken,text="Решение",height=4,width=40,font="Arial 20",fg="black",bg="yellow")
 lbl.pack(side=TOP)
 rezult.pack(side=BOTTOM)
